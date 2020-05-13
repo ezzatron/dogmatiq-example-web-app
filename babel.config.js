@@ -1,5 +1,6 @@
 module.exports = {
   plugins: [
+    '@loadable/babel-plugin',
     'transform-async-to-promises',
     'react-hot-loader/babel',
     [

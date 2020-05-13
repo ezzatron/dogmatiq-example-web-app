@@ -52,6 +52,34 @@ module.exports = (_, { mode = 'development' } = {}) => {
           ]
         },
         {
+          test: /\.css$/,
+          exclude: [
+            /\/node_modules\//,
+            /\.module\.css$/
+          ],
+          use: [
+            {
+              loader: MiniCssExtractPlugin.loader,
+              options: {
+                hmr: !isProduction
+              }
+            },
+            {
+              loader: 'css-loader',
+              options: {
+                importLoaders: 1,
+                sourceMap: true
+              }
+            },
+            {
+              loader: 'postcss-loader',
+              options: {
+                sourceMap: true
+              }
+            }
+          ]
+        },
+        {
           test: /\.module\.css$/,
           exclude: /\/node_modules\//,
           use: [
@@ -96,6 +124,7 @@ module.exports = (_, { mode = 'development' } = {}) => {
 
   if (!isProduction) {
     config.devServer = {
+      historyApiFallback: true,
       hot: true,
       proxy: {
         '/api': {

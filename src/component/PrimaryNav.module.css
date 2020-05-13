@@ -1,0 +1,14 @@
+.nav {
+  display: flex;
+  padding-left: 0;
+  list-style-type: none;
+}
+
+.nav li {
+  padding-right: .5em;
+}
+
+.nav li + li {
+  padding-left: .5em;
+  border-left: 1px solid #ddd;
+}
